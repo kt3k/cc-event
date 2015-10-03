@@ -1,0 +1,23 @@
+{
+  "name": "cc-event",
+  "version": "0.1.0",
+  "description": "The event utility for class-component.",
+  "main": "cc-event.js",
+  "scripts": {
+    "test": "karma start karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kt3k/cc-event.git"
+  },
+  "keywords": [
+    "class-component",
+    "event"
+  ],
+  "author": "Yoshiya Hinosawa <stibium121@gmail.com> (https://twitter.com/kt3k)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kt3k/cc-event/issues"
+  },
+  "homepage": "https://github.com/kt3k/cc-event#readme"
+}

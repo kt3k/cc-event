@@ -1,0 +1,23 @@
+{
+  "name": "cc-event",
+  "main": "cc-event.js",
+  "version": "0.1.0",
+  "authors": [
+    "Yoshiya Hinosawa <stibium121@gmail.com>"
+  ],
+  "description": "The event utility for class-component.",
+  "moduleType": [],
+  "keywords": [
+    "class-component",
+    "event"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
