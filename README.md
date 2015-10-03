@@ -1,4 +1,4 @@
-# cc-event v0.1.0
+# cc-event v1.0.0
 
 > event utility for class-component [experimental]
 
