@@ -1,6 +1,6 @@
 # cc-event v1.0.0
 
-> event utility for class-component [experimental]
+> An event utility for class-component [experimental]
 
 # Usage
 
