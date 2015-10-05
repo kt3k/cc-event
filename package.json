@@ -4,7 +4,8 @@
   "description": "The event utility for class-component.",
   "main": "cc-event.js",
   "scripts": {
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "ci": "karma start karma.conf.js --browsers PhantomJS"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,18 @@
   "bugs": {
     "url": "https://github.com/kt3k/cc-event/issues"
   },
-  "homepage": "https://github.com/kt3k/cc-event#readme"
+  "homepage": "https://github.com/kt3k/cc-event#readme",
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "class-component": "^5.4.2",
+    "jquery": "^2.1.4",
+    "karma": "^0.13.10",
+    "karma-browserify": "^4.4.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-mocha": "^0.2.0",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "mocha": "^2.3.3",
+    "phantomjs": "^1.9.18"
+  }
 }

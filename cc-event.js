@@ -3,7 +3,7 @@
  * author: Yoshiya Hinosawa ( @kt3k )
  */
 
-(function () {
+(function ($) {
     'use strict';
 
     Function.prototype.event = function (event, selector) {
@@ -17,8 +17,6 @@
     };
 
     $.cc.initEvents = function (component) {
-
-        var self = this;
 
         for (var i in component) {
 
@@ -38,13 +36,15 @@
 
             func.__events__.forEach(function (obj) {
 
+                var func = this;
+
                 component.elem.on(obj.event, obj.selector, function () {
 
-                    func.apply(self, arguments);
+                    func.apply(component, arguments);
 
                 });
 
-            });
+            }, func);
 
         }
 
@@ -74,4 +74,4 @@
 
     });
 
-})();
+})(jQuery);
