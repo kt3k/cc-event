@@ -5,7 +5,8 @@
   "main": "cc-event.js",
   "scripts": {
     "test": "karma start karma.conf.js",
-    "ci": "karma start karma.conf.js --browsers PhantomJS"
+    "ci": "karma start karma.conf.js --browsers PhantomJS",
+    "codecov": "cat coverage/*/lcov.info | codecov"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "browserify-istanbul": "^0.2.1",
     "chai": "^3.3.0",
     "class-component": "^5.4.2",
+    "codecov.io": "^0.1.6",
     "jquery": "^2.1.4",
     "karma": "^0.13.10",
     "karma-browserify": "^4.4.0",
