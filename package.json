@@ -1,6 +1,6 @@
 {
   "name": "cc-event",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The event utility for class-component.",
   "main": "cc-event.js",
   "scripts": {

@@ -1,5 +1,5 @@
 /**
- * cc-event v1.0.0
+ * cc-event v1.0.1
  * author: Yoshiya Hinosawa ( @kt3k )
  */
 
