@@ -47,9 +47,11 @@ describe('$.cc.initEvents', function () {
 
             };
 
-            pt.foo = function () {
+            pt.foo = function (e) {
 
                 this.fooCalled = true;
+
+                this.e = e;
 
             }.event('foo');
 
@@ -88,6 +90,16 @@ describe('$.cc.initEvents', function () {
         elem.find('.btn').trigger('bar');
 
         expect(elem.cc.get('component').barCalled).to.be.true;
+
+    });
+
+    it('sets event handlers which take event object as parameter', function () {
+
+        var e = $.Event('foo');
+
+        elem.trigger(e);
+
+        expect(elem.cc.get('component').e).to.equal(e);
 
     });
 
