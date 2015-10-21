@@ -6,16 +6,60 @@
 (function ($) {
     'use strict';
 
+    /**
+     * The `event` postfix style annotation.
+     *
+     * @example
+     *     prototype.startMusic = function () {
+     *         // blah
+     *     }.event('click', '.play-btn');
+     *
+     * @param {String} event The event name(s) (e.g. 'click touchstart')
+     * @param {String} selector The selector (e.g. '.my-class', '#my-id')
+     */
     Function.prototype.event = function (event, selector) {
 
-        this.__events__ = this.__events__ || [];
-
-        this.__events__.push({event: event, selector: selector});
-
-        return this;
+        return $.cc.event(event, selector)(this);
 
     };
 
+    /**
+     * `event` decorator.
+     *
+     * This decorator registers the event object to the decorating methods.
+     *
+     * @example
+     *
+     *     class Controller {
+     *         @$.cc.event('click', 'play-btn')
+     *         startMusic() {
+     *             // blah
+     *         }
+     *     }
+     *
+     * @param {String} event The event name(s) (e.g. 'click touchstart')
+     * @param {String} selector The selector (e.g. '.my-class', '#my-id')
+     */
+    $.cc.event = function (event, selector) {
+
+        return function (func) {
+
+            func.__events__ = func.__events__ || [];
+
+            func.__events__.push({event: event, selector: selector});
+
+            return func;
+
+        };
+
+    };
+
+    /**
+     * Initialize the dom events by event objects registered on each method.
+     *
+     * @private
+     * @param {$.cc.Coelement} component The component
+     */
     $.cc.initEvents = function (component) {
 
         for (var i in component) {
@@ -50,6 +94,9 @@
 
     };
 
+    /**
+     * Modified version of Actor class.
+     */
     $.cc.Actor = $.cc.subclass($.cc.Actor, function (pt, parent) {
 
         pt.constructor = function () {
@@ -62,6 +109,9 @@
 
     });
 
+    /**
+     * Modified version of Coelement class.
+     */
     $.cc.Coelement = $.cc.subclass($.cc.Coelement, function (pt, parent) {
 
         pt.constructor = function () {
