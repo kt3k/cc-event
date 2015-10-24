@@ -56,3 +56,49 @@ $.cc.assign('scene', Scene);
 ```
 
 Under the above settings, when you click the settings button it goes to `settings.html`. When you click other part of `.scene`, it alerts "hello".
+
+### Use with es6 class and decorator
+
+```js
+
+var $ = require('jquery');
+var event = $.cc.event;
+
+class Scene extends $.cc.Actor {
+
+    /**
+     * Says hello.
+     */
+    @event('click touchstart')
+    sayHello() {
+
+        alert('hello');
+
+    }
+
+    /**
+     * Goes to the settings screen.
+     */
+    @event('click', '.setting-btn')
+    gotoSettings(e) {
+
+        e.stopPropagation();
+
+        location.href = 'settings.html';
+
+    }
+
+}
+
+$.cc.assign('scene', Scene);
+```
+
+```html
+<div class="scene" >
+  <button class="settings-btn">settings</div>
+</div>
+```
+
+# License
+
+MIT
