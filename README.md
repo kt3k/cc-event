@@ -1,4 +1,4 @@
-# cc-event v1.0.1 [![Build Status](https://travis-ci.org/kt3k/cc-event.svg?branch=master)](https://travis-ci.org/kt3k/cc-event) [![codecov.io](http://codecov.io/github/kt3k/cc-event/coverage.svg?branch=master)](http://codecov.io/github/kt3k/cc-event?branch=master)
+# cc-event v2.0.0 [![Build Status](https://travis-ci.org/kt3k/cc-event.svg?branch=master)](https://travis-ci.org/kt3k/cc-event) [![codecov.io](http://codecov.io/github/kt3k/cc-event/coverage.svg?branch=master)](http://codecov.io/github/kt3k/cc-event?branch=master)
 
 > An event utility for class-component [experimental]
 
