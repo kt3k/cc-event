@@ -29,6 +29,24 @@ describe('Function.prototype.event', function () {
 
 })
 
+describe('$.cc.event', function () {
+
+    it('works as the method decorator which register the decoratee as the event handler', function () {
+
+        var C = function () {}
+
+        C.prototype.foo = function () {}
+
+        $.cc.event('flick', '.that-part')(C.prototype, 'foo', {}) // this is what decorators do for the decoratee method.
+
+        expect(C.prototype.foo.__events__).to.be.an('array')
+        expect(C.prototype.foo.__events__[0].event).to.equal('flick')
+        expect(C.prototype.foo.__events__[0].selector).to.equal('.that-part')
+
+    })
+
+})
+
 describe('$.cc.initEvents', function () {
     'use strict'
 
