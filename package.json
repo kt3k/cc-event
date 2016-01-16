@@ -4,6 +4,7 @@
   "description": "The event utility for class-component.",
   "main": "cc-event.js",
   "scripts": {
+    "lint": "souffle",
     "test": "karma start karma.conf.js",
     "ci": "karma start karma.conf.js --browsers PhantomJS",
     "codecov": "cat coverage/*/lcov.info | codecov"
@@ -36,6 +37,17 @@
     "karma-mocha": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.1",
     "mocha": "^2.3.3",
-    "phantomjs": "^1.9.18"
+    "phantomjs": "^1.9.18",
+    "souffle-cli": "^3.1.0"
+  },
+  "souffle": {
+    "globals": [
+      "before",
+      "beforeEach",
+      "jQuery",
+      "describe",
+      "it",
+      "expect"
+    ]
   }
 }

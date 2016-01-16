@@ -1,38 +1,38 @@
 
-var $ = global.jQuery = require('jquery');
-require('class-component');
+var $ = global.jQuery = require('jquery')
+require('class-component')
 
 // Loads cc-event
-require('./');
+require('./')
 
 describe('Function.prototype.event', function () {
-    'use strict';
+    'use strict'
 
     it('adds __events__ property to the function', function () {
 
-        var f = function () {}.event('test');
+        var f = function () {}.event('test')
 
-        expect(f.__events__).to.be.an('array');
+        expect(f.__events__).to.be.an('array')
 
-    });
+    })
 
     it('pushes the given event and selector to the __events__ array', function () {
 
-        var f = function () {}.event('test0').event('test1', '.selector');
+        var f = function () {}.event('test0').event('test1', '.selector')
 
-        expect(f.__events__[0].event).to.equal('test0');
-        expect(f.__events__[0].selector).to.be.undefined;
-        expect(f.__events__[1].event).to.equal('test1');
-        expect(f.__events__[1].selector).to.equal('.selector');
+        expect(f.__events__[0].event).to.equal('test0')
+        expect(f.__events__[0].selector).to.be.undefined
+        expect(f.__events__[1].event).to.equal('test1')
+        expect(f.__events__[1].selector).to.equal('.selector')
 
-    });
+    })
 
-});
+})
 
 describe('$.cc.initEvents', function () {
-    'use strict';
+    'use strict'
 
-    var elem;
+    var elem
 
     before(function () {
 
@@ -40,73 +40,73 @@ describe('$.cc.initEvents', function () {
 
             pt.constructor = function (elem) {
 
-                this.elem = elem;
+                this.elem = elem
 
-                this.fooCalled = false;
-                this.barCalled = false;
+                this.fooCalled = false
+                this.barCalled = false
 
-            };
+            }
 
             pt.foo = function (e) {
 
-                this.fooCalled = true;
+                this.fooCalled = true
 
-                this.e = e;
+                this.e = e
 
-            }.event('foo');
+            }.event('foo')
 
             pt.bar = function () {
 
-                this.barCalled = true;
+                this.barCalled = true
 
-            }.event('bar', '.btn');
+            }.event('bar', '.btn')
 
-        });
+        })
 
-        $.cc.assign('component', Component);
+        $.cc.assign('component', Component)
 
-    });
+    })
 
     beforeEach(function () {
 
-        elem = $('<div><button class="btn">button</button></div>');
+        elem = $('<div><button class="btn">button</button></div>')
 
-        var component = elem.cc.init('component');
+        var component = elem.cc.init('component')
 
-        $.cc.initEvents(component);
+        $.cc.initEvents(component)
 
-    });
+    })
 
     it('sets event hanlders to component.elem according to the __events__ of the methods of component', function () {
 
-        elem.trigger('foo');
+        elem.trigger('foo')
 
-        expect(elem.cc.get('component').fooCalled).to.be.true;
+        expect(elem.cc.get('component').fooCalled).to.be.true
 
-        elem.trigger('bar');
+        elem.trigger('bar')
 
-        expect(elem.cc.get('component').barCalled).to.be.false;
+        expect(elem.cc.get('component').barCalled).to.be.false
 
-        elem.find('.btn').trigger('bar');
+        elem.find('.btn').trigger('bar')
 
-        expect(elem.cc.get('component').barCalled).to.be.true;
+        expect(elem.cc.get('component').barCalled).to.be.true
 
-    });
+    })
 
     it('sets event handlers which take event object as parameter', function () {
 
-        var e = $.Event('foo');
+        var e = $.Event('foo')
 
-        elem.trigger(e);
+        elem.trigger(e)
 
-        expect(elem.cc.get('component').e).to.equal(e);
+        expect(elem.cc.get('component').e).to.equal(e)
 
-    });
+    })
 
-});
+})
 
 describe('$.cc.Coelement', function () {
-    'use strict';
+    'use strict'
 
     it('inits events at construction', function () {
 
@@ -114,28 +114,28 @@ describe('$.cc.Coelement', function () {
 
             pt.spam = function () {
 
-                this.spamCalled = true;
+                this.spamCalled = true
 
-            }.event('spam');
+            }.event('spam')
 
-        });
+        })
 
-        $.cc.assign('coelement', Component);
+        $.cc.assign('coelement', Component)
 
-        var elem = $('<div />');
+        var elem = $('<div />')
 
-        elem.cc.init('coelement');
+        elem.cc.init('coelement')
 
-        elem.trigger('spam');
+        elem.trigger('spam')
 
-        expect(elem.cc.get('coelement').spamCalled).to.be.true;
+        expect(elem.cc.get('coelement').spamCalled).to.be.true
 
-    });
+    })
 
-});
+})
 
 describe('$.cc.Actor', function () {
-    'use strict';
+    'use strict'
 
     it('inits events at construction', function () {
 
@@ -143,22 +143,22 @@ describe('$.cc.Actor', function () {
 
             pt.ham = function () {
 
-                this.hamCalled = true;
+                this.hamCalled = true
 
-            }.event('ham');
+            }.event('ham')
 
-        });
+        })
 
-        $.cc.assign('actor', Actor);
+        $.cc.assign('actor', Actor)
 
-        var elem = $('<div />');
+        var elem = $('<div />')
 
-        elem.cc.init('actor');
+        elem.cc.init('actor')
 
-        elem.trigger('ham');
+        elem.trigger('ham')
 
-        expect(elem.cc.getActor().hamCalled).to.be.true;
+        expect(elem.cc.getActor().hamCalled).to.be.true
 
-    });
+    })
 
-});
+})

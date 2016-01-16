@@ -4,7 +4,8 @@
  */
 
 (function ($) {
-    'use strict';
+    /* eslint no-extend-native: 0 */
+    'use strict'
 
     /**
      * The `event` postfix style annotation.
@@ -12,26 +13,33 @@
      * @example
      *     prototype.startMusic = function () {
      *         // blah
-     *     }.event('click', '.play-btn');
+     *     }.event('click', '.play-btn')
      *
      * @param {String} event The event name(s) (e.g. 'click touchstart')
      * @param {String} selector The selector (e.g. '.my-class', '#my-id')
      */
     Function.prototype.event = function (event, selector) {
 
-        return $.cc.event(event, selector)(this);
+        $.cc.event(event, selector)([this], 0)
 
-    };
+        return this
+
+    }
 
     /**
-     * `event` decorator.
+     * `event` method decorator.
      *
-     * This decorator registers the event object to the decorating methods.
+     * This decorator conforms to Yehuda Katz's proposal.
+     * https://github.com/wycats/javascript-decorators
+     *
+     * This decorator registers the event object to the target method.
      *
      * @example
      *
+     *     const event = $.cc.event
+     *
      *     class Controller {
-     *         @$.cc.event('click', 'play-btn')
+     *         @event('click', 'play-btn')
      *         startMusic() {
      *             // blah
      *         }
@@ -42,17 +50,17 @@
      */
     $.cc.event = function (event, selector) {
 
-        return function (func) {
+        return function (prototype, name) {
 
-            func.__events__ = func.__events__ || [];
+            var method = prototype[name]
 
-            func.__events__.push({event: event, selector: selector});
+            method.__events__ = method.__events__ || []
 
-            return func;
+            method.__events__.push({event: event, selector: selector})
 
-        };
+        }
 
-    };
+    }
 
     /**
      * Initialize the dom events by event objects registered on each method.
@@ -64,35 +72,35 @@
 
         for (var i in component) {
 
-            var func = component[i];
+            var func = component[i]
 
             if (typeof func !== 'function') {
 
-                continue;
+                continue
 
             }
 
             if (!func.__events__) {
 
-                continue;
+                continue
 
             }
 
             func.__events__.forEach(function (obj) {
 
-                var func = this;
+                var func = this
 
                 component.elem.on(obj.event, obj.selector, function () {
 
-                    func.apply(component, arguments);
+                    func.apply(component, arguments)
 
-                });
+                })
 
-            }, func);
+            }, func)
 
         }
 
-    };
+    }
 
     /**
      * Modified version of Actor class.
@@ -101,13 +109,13 @@
 
         pt.constructor = function () {
 
-            parent.constructor.apply(this, arguments);
+            parent.constructor.apply(this, arguments)
 
-            $.cc.initEvents(this);
+            $.cc.initEvents(this)
 
         }
 
-    });
+    })
 
     /**
      * Modified version of Coelement class.
@@ -116,12 +124,12 @@
 
         pt.constructor = function () {
 
-            parent.constructor.apply(this, arguments);
+            parent.constructor.apply(this, arguments)
 
-            $.cc.initEvents(this);
+            $.cc.initEvents(this)
 
-        };
+        }
 
-    });
+    })
 
-})(jQuery);
+})(jQuery)
