@@ -70,35 +70,32 @@
      */
     $.cc.initEvents = function (component) {
 
-        for (var i in component) {
+        // iterate over own properties and direct prototype's properties
+        Object.getOwnPropertyNames(component).concat(Object.getOwnPropertyNames(Object.getPrototypeOf(component))).map(function (name) {
 
-            var func = component[i]
+            return component[name]
 
-            if (typeof func !== 'function') {
+        }).filter(function (property) {
 
-                continue
+            return typeof property === 'function'
 
-            }
+        }).filter(function (func) {
 
-            if (!func.__events__) {
+            return func.__events__ != null
 
-                continue
+        }).forEach(function (handler) {
 
-            }
-
-            func.__events__.forEach(function (obj) {
-
-                var func = this
+            handler.__events__.forEach(function (obj) {
 
                 component.elem.on(obj.event, obj.selector, function () {
 
-                    func.apply(component, arguments)
+                    handler.apply(component, arguments)
 
                 })
 
-            }, func)
+            })
 
-        }
+        })
 
     }
 

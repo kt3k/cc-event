@@ -79,6 +79,17 @@ describe('$.cc.initEvents', function () {
 
             }.event('bar', '.btn')
 
+            Object.defineProperty(pt, 'baz', {
+
+                enumerable: false,
+                value: function () {
+
+                    this.bazCalled = true
+
+                }.event('baz')
+
+            })
+
         })
 
         $.cc.assign('component', Component)
@@ -119,6 +130,13 @@ describe('$.cc.initEvents', function () {
 
         expect(elem.cc.get('component').e).to.equal(e)
 
+    })
+
+    it('sets event handlers even when the method is non-enumerable', function () {
+
+        elem.trigger('baz')
+
+        expect(elem.cc.get('component').bazCalled).to.be.true
     })
 
 })
